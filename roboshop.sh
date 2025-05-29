@@ -1,10 +1,10 @@
 #!/bin/bash
 
 AMI_ID="ami-09c813fb71547fc4f"
-SG_IS="sg-02f1ec8684548b321"
-INSTANCES=("msql" "redis" "mongdb" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "frontend")
-ZONE_ID="Z031105925YL64MCO7Z8N"
-DOMAIN_NAME="varundopathi.site"
+SG_ID="sg-02f1ec8684548b321" # replace with your SG ID
+INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "frontend")
+ZONE_ID="Z031105925YL64MCO7Z8N" # replace with your ZONE ID
+DOMAIN_NAME="varundopathi.site" # replace with your domain
 
 #for instance in ${INSTANCES[@]}
 for instance in $@
@@ -13,10 +13,9 @@ do
     if [ $instance != "frontend" ]
     then
         IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[0].Instances[0].PrivateIpAddress" --output text)
-        # RECORD_NAME="$instance.$DOMAIN_NAME"
+        RECORD_NAME="$instance.$DOMAIN_NAME"
     else
         IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
-        # RECORD_NAME="$DOMAIN_NAME"
+        RECORD_NAME="$DOMAIN_NAME"
     fi
     echo "$instance IP address: $IP"
-done
