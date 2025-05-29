@@ -30,20 +30,20 @@ VALIDATE(){
     fi
 }
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOG_FILE
 VALIDATE $? "copying mongodb repo file"
 
-dnf install mongodb-org -y
+dnf install mongodb-org -y &>>$LOG_FILE
 VALIDATE $? "Installing mongodb" 
 
-systemctl enable mongod 
+systemctl enable mongod &>>$LOG_FILE
 VALIDATE $? "enabling mongodb"
 
-systemctl start mongod 
+systemctl start mongod &>>$LOG_FILE
 VALIDATE $? "starting mongodb"
 
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>>$LOG_FILE
 VALIDATE $? "Changing mongodb permissions"
 
-systemctl restart mongod
+systemctl restart mongod &>>$LOG_FILE
 VALIDATE $? "restarting  mongodb"
