@@ -17,3 +17,4 @@ do
         RECORD_NAME="$DOMAIN_NAME"
     fi
     echo "$instance IP address: $IP"
+done
