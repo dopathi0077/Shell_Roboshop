@@ -74,10 +74,10 @@ systemctl enable shipping  &>>$LOG_FILE
 VALIDATE $? "Enabling  shipping "
 
 systemctl start shipping &>>$LOG_FILE
-# VALIDATE $? "Starting Shipping"
+VALIDATE $? "Starting Shipping"
 
-dnf install mysql -y &>>$LOG_FILE
-VALIDATE $? "Installing msql "
+dnf install mysql -y  &>>$LOG_FILE
+VALIDATE $? "Install MySQL"
 
 mysql -h msql.VarunDopathi.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/app-user.sql 
 mysql -h msql.VarunDopathi.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/app-user.sql 
@@ -86,7 +86,6 @@ VALIDATE $? "Loading data to msql"
 
 systemctl restart shipping &>>$LOG_FILE
 VALIDATE $? "Restart shipping"
-
 
 
 SCRIPT_END_TIME=$(date +%s)
