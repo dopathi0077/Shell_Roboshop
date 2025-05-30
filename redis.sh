@@ -40,10 +40,10 @@ VALIDATE $? "Enabling  redis:7"
 dnf install redis -y  &>>$LOG_FILE
 VALIDATE $? "Installing redis:7"
 
-# sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis/redis.conf &>>$LOG_FILE
-# VALIDATE $? "Changing redis permissions"
+sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no' /etc/redis/redis.conf &>>$LOG_FILE
+VALIDATE $? "Changing redis permissions"
 
-# systemctl enable redis  &>>$LOG_FILE
-# systemctl start redis &>>$LOG_FILE
-# VALIDATE $? "Starting redis"
+systemctl enable redis  &>>$LOG_FILE
+systemctl start redis &>>$LOG_FILE
+VALIDATE $? "Starting redis"
 
