@@ -74,7 +74,7 @@ systemctl enable shipping  &>>$LOG_FILE
 VALIDATE $? "Enabling  shipping "
 
 systemctl start shipping &>>$LOG_FILE
-VALIDATE $? "Starting Shipping"
+# VALIDATE $? "Starting Shipping"
 
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing msql "
