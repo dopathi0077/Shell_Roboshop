@@ -9,7 +9,7 @@ Environment=CART_HOST=cart.VarunDopathi.site
 Environment=CART_PORT=8080
 Environment=USER_HOST=user.VarunDopathi.site
 Environment=USER_PORT=8080
-Environment=AMQP_HOST=rabbitmq.VarunDopathi.site
+Environment=AMQP_HOST=rabbitmq.varundopathi.site
 // highlight-end
 Environment=AMQP_USER=roboshop
 Environment=AMQP_PASS=roboshop123
