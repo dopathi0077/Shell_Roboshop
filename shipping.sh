@@ -78,7 +78,7 @@ VALIDATE $? "Starting Shipping"
 dnf install mysql -y  &>>$LOG_FILE
 VALIDATE $? "Install MySQL"
 
-mysql -h msql.VarunDopathi.site -u root -p$MYSQL_ROOT_PASSWORD -e 'use cities'
+mysql -h msql.VarunDopathi.site -uroot -p$MYSQL_ROOT_PASSWORD -e 'use cities'
 if [ $? -ne 0 ]
 then
     mysql -h msql.VarunDopathi.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/schema.sql &>>$LOG_FILE
