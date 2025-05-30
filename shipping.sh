@@ -35,7 +35,7 @@ VALIDATE(){
     fi
 }
 
-dnf install maven -y
+dnf install maven -y &>>$LOG_FILE
 VALIDATE $? "Installing Maven"
 
 id roboshop
@@ -71,8 +71,10 @@ systemctl daemon-reload &>>$LOG_FILE
 VALIDATE $? "daemon-reload of shipping "
 
 systemctl enable shipping  &>>$LOG_FILE
+VALIDATE $? "Enabling  shipping "
+
 systemctl start shipping  &>>$LOG_FILE
-VALIDATE $? "Enabling and starting shipping "
+VALIDATE $? "Starting shipping "
 
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing msql "
