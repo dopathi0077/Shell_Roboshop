@@ -21,6 +21,10 @@ else
    echo "You are running with root access" | tee -a $LOG_FILE
 fi
 
+
+echo "Please enter root password to setup"
+read -s MYSQL_ROOT_PASSWORD
+
 VALIDATE(){
     if [ $1 -eq 0 ] # it will pass the exit status args VALIDATE $? "nginx" as $1 and $2 to this 
     then
@@ -73,9 +77,9 @@ VALIDATE $? "Enabling and starting shipping "
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing msql "
 
-mysql -h msql.VarunDopathi.site -uroot -pRoboShop@1 < /app/db/app-user.sql 
-mysql -h msql.VarunDopathi.site -uroot -pRoboShop@1 < /app/db/app-user.sql 
-mysql -h msql.VarunDopathi.site -uroot -pRoboShop@1 < /app/db/master-data.sql
+mysql -h msql.VarunDopathi.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/app-user.sql 
+mysql -h msql.VarunDopathi.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/app-user.sql 
+mysql -h msql.VarunDopathi.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/master-data.sql
 VALIDATE $? "Loading data to msql"
 
 systemctl restart shipping &>>$LOG_FILE
