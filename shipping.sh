@@ -23,8 +23,8 @@ else
     echo "You are running with root access" | tee -a $LOG_FILE
 fi
 
-echo "Please enter root password to setup"
-read -s MYSQL_ROOT_PASSWORD
+# echo "Please enter root password to setup"
+# read -s MYSQL_ROOT_PASSWORD
 
 # validate functions takes input as exit status, what command they tried to install
 VALIDATE(){
@@ -83,9 +83,9 @@ VALIDATE $? "Install MySQL"
 # mysql -h mysql.varundopathi.site -u root -p$MYSQL_ROOT_PASSWORD -e 'use cities' 
 # if [ $? -ne 0 ]
 # then
-    mysql -h mysql.varundopathi.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/schema.sql 
-    mysql -h mysql.varundopathi.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/app-user.sql  
-    mysql -h mysql.varundopathi.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/master-data.sql
+    mysql -h mysql.varundopathi.site -uroot -pRoboShop@1  < /app/db/schema.sql 
+    mysql -h mysql.varundopathi.site -uroot -pRoboShop@1  < /app/db/app-user.sql  
+    mysql -h mysql.varundopathi.site -uroot -pRoboShop@1  < /app/db/master-data.sql
     VALIDATE $? "Loading data into MySQL"
 # else
 #     echo -e "Data is already loaded into MySQL ... $Y SKIPPING $N"
